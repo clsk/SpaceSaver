@@ -26,11 +26,4 @@ void Keyboard::process_key(char lcKey, bool lbPress)
 {
 	mabKeys[lcKey]=lbPress;
 }
-/**
-*	Dada una entrada (tecla) determina si esta ha sido presionada
-**/
-bool Keyboard::check (int liEntry)
-{
-	return  mabKeys[liEntry];
-}
 

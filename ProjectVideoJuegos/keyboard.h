@@ -46,7 +46,10 @@ public:
 	/**
 	*	Dada una entrada (tecla) determina si esta ha sido presionada
 	**/
-	bool check(int);
+	bool check(int)
+	{
+		return  mabKeys[liEntry];
+	}
 
 	/**
 	*	Actualiza el arreglo de teclas de la estructura, 

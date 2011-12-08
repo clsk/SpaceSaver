@@ -21,7 +21,6 @@ GraphicObject::GraphicObject(ticpp::Element* xml_element) : m_xml_element(xml_el
 	m_xml_element->GetAttribute("ImagePath", &image_path);
 
 	m_texture.load(image_path.c_str(), GL_RGBA);
-
 }
 
 void GraphicObject::render(GraphicManager &graphic_manager)
@@ -32,11 +31,6 @@ void GraphicObject::render(GraphicManager &graphic_manager)
 	liScreen_X = m_pos.x + scene->get_initial_pos().x;
 	liScreen_Y = (m_pos.y)  + scene->get_initial_pos().y + (scene->get_block_size() - scene->get_tile_size());
 	
-	//renderizar el objeto
-
-	float xo, yo, xf, yf;
-	xo = 0.0f; yo = 1.0f;
-	xf = xo + 0.167f; 
-	yf = yo - 0.083f;
+	//renderizar el objeto (paint whole image)
 	graphic_manager.DrawObject(m_texture.getID(), m_size.x, m_size.y, 0.0f, 0.1f, 0.1f, 0.0f,liScreen_X,liScreen_Y);
 }

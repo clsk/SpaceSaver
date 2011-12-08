@@ -51,15 +51,14 @@ public:
 	virtual void render(GraphicManager &graphic_manager);
 
 	// Setters
-	virtual void set_position(const Point<float>& pos) { m_pos = pos; update_xml_pos(); }
-	virtual void set_position(const Point<int>& pos) { m_pos.x = (float)(pos.x); m_pos.y = (float)(pos.y); update_xml_pos();}
+	virtual void set_position(const Point<>& pos) { m_pos = pos; update_xml_pos(); }
 	virtual void set_state(const ObjectState state) { m_state = state; }
 
 	// Getters
 	virtual int get_imageID() { return m_texture.getID(); }
 	virtual ObjectState get_state() { return m_state; }
-	virtual const Point<int>& get_size() { return m_size; }
-	virtual const Point<float>& get_position() const { return m_pos; }
+	virtual const Point<>& get_size() { return m_size; }
+	virtual const Point<>& get_position() const { return m_pos; }
 	virtual const std::string& get_name() const { return m_name; }
 	virtual int get_cellID() const { return m_cellID; }
 
@@ -70,7 +69,7 @@ protected:
 	int				m_cellID;
 	ObjectState		m_state;
 	std::string		m_name;
-	Point<float>	m_pos;
+	Point<>	m_pos;
 	Point<>			m_size;
 	int				m_seq;
 	int				m_delay;

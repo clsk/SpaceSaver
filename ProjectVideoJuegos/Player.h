@@ -31,6 +31,8 @@ public:
 	 */
 	void update(float lfTimeStep);
 
+	void render(GraphicManager &graphic_manager);
+
 protected:
 	int m_frame_delay;
 };
