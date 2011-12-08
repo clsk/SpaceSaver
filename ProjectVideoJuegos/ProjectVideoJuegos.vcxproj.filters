@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Game">
+      <UniqueIdentifier>{0436b034-f4fb-4525-a5f8-81201d461496}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{23c9a59e-3d3e-4c42-8cdd-ef2ccaadbb3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{79980c79-b541-4fe1-a2ef-179db812a65b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Output">
+      <UniqueIdentifier>{c6b4257a-ae78-4a8e-942d-284a4b637598}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries">
+      <UniqueIdentifier>{def4646d-b411-401e-9111-6da1e27cfccc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\Corona">
+      <UniqueIdentifier>{8a0d27cb-a124-406a-93a4-5d6e148f21aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rules">
+      <UniqueIdentifier>{e6cbeaed-6317-4a0c-a86d-81228da35338}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TinyXml++">
+      <UniqueIdentifier>{6077e17e-ea47-4eb9-a010-b52ef62931a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{792482df-0b75-44a8-9052-32491690bd3e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="keyboard.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicManager.cpp">
+      <Filter>Output</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Output</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectVideoJuegos.cpp" />
+    <ClCompile Include="Action.cpp">
+      <Filter>Rules</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionBuilder.cpp">
+      <Filter>Rules</Filter>
+    </ClCompile>
+    <ClCompile Include="ConditionBuilder.cpp">
+      <Filter>Rules</Filter>
+    </ClCompile>
+    <ClCompile Include="Rule.cpp">
+      <Filter>Rules</Filter>
+    </ClCompile>
+    <ClCompile Include="RuleBuilder.cpp">
+      <Filter>Rules</Filter>
+    </ClCompile>
+    <ClCompile Include="ticpp.cpp">
+      <Filter>TinyXml++</Filter>
+    </ClCompile>
+    <ClCompile Include="tinystr.cpp">
+      <Filter>TinyXml++</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml.cpp">
+      <Filter>TinyXml++</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxmlerror.cpp">
+      <Filter>TinyXml++</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxmlparser.cpp">
+      <Filter>TinyXml++</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Condition.cpp">
+      <Filter>Rules</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicObject.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="keyboard.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicManager.h">
+      <Filter>Output</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Output</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\Corona\corona.h">
+      <Filter>Libraries\Corona</Filter>
+    </ClInclude>
+    <ClInclude Include="Action.h">
+      <Filter>Rules</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionBuilder.h">
+      <Filter>Rules</Filter>
+    </ClInclude>
+    <ClInclude Include="Condition.h">
+      <Filter>Rules</Filter>
+    </ClInclude>
+    <ClInclude Include="ConditionBuilder.h">
+      <Filter>Rules</Filter>
+    </ClInclude>
+    <ClInclude Include="Rule.h">
+      <Filter>Rules</Filter>
+    </ClInclude>
+    <ClInclude Include="RuleBuilder.h">
+      <Filter>Rules</Filter>
+    </ClInclude>
+    <ClInclude Include="ticpp.h">
+      <Filter>TinyXml++</Filter>
+    </ClInclude>
+    <ClInclude Include="ticpprc.h">
+      <Filter>TinyXml++</Filter>
+    </ClInclude>
+    <ClInclude Include="tinystr.h">
+      <Filter>TinyXml++</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml.h">
+      <Filter>TinyXml++</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicObject.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Libraries\Corona\corona.dll">
+      <Filter>Libraries\Corona</Filter>
+    </None>
+    <None Include="ReadMe.txt" />
+    <None Include="Level1.xml">
+      <Filter>Data</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Libraries\Corona\corona.lib">
+      <Filter>Libraries\Corona</Filter>
+    </Library>
+  </ItemGroup>
+</Project>
