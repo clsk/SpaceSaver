@@ -26,7 +26,8 @@ enum eInputKeys
 	eKey_Left = GLUT_KEY_LEFT,
 	eKey_Right= GLUT_KEY_RIGHT,
 	eKey_Space= VK_SPACE,
-	eKey_Enter= VK_RETURN
+	eKey_Enter= VK_RETURN,
+	eKey_Shift= VK_SHIFT
 };
 
 //**************ESTRUCTURAS***************
@@ -46,7 +47,7 @@ public:
 	/**
 	*	Dada una entrada (tecla) determina si esta ha sido presionada
 	**/
-	bool check(int)
+	bool check(int liEntry)
 	{
 		return  mabKeys[liEntry];
 	}
@@ -57,6 +58,23 @@ public:
 	**/
 	void process_key(char, bool);
 
+	/*
+	 *   Tetorna bitmask de los modificadores (CTRL,SHIFTALT) activos
+	 *   GLUT_ACTIVE_SHFT, GLUT_ACTIVE_CTRL, GLUT_ACTIVE_ALT
+	 */
+	int get_modifiers() const
+	{
+		return m_modifiers;
+	}
+
+	/*
+	 *   Actualiza el bitmask de los modificadores activos
+	 */
+	void set_modifiers(int modifiers)
+	{
+		m_modifiers = modifiers;
+	}
+
 private:
 	/**
 		Almacena las teclas disponibles a utilizar.  Max: 256
@@ -64,6 +82,7 @@ private:
 		1-> indica que la tecla ha sido presionada
 	*/
 	bool mabKeys[ki_MAX_COUNT_KEY];
+	int m_modifiers;
 
 
 };

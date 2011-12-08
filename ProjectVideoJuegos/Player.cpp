@@ -9,56 +9,86 @@
 
 using namespace std;
 
+Player::Player(ticpp::Element* xml_element) : GraphicObject(xml_element), m_angle_seq(0), m_SPRITE_INTERVAL_X(0.0f), m_SPRITE_INTERVAL_Y(0.083f)
+{
+	m_xml_element->GetAttribute("FrameDelay", &m_frame_delay);
+}
+
 void Player::update(float lfTimeStep)
 {
 	Keyboard& keyboard = Game::get_instance().m_keyboard;
 	Scene& scene = (*Game::get_instance().get_scene());
 	int liYaux, liXaux;
+
+	// Handle rotations
+	if ((keyboard.get_modifiers() & GLUT_ACTIVE_SHIFT) == GLUT_ACTIVE_SHIFT)
+	{
+		if (keyboard.check(eKey_Left))
+		{
+			if (m_angle_seq > 1)
+			{
+				--m_angle_seq;
+			}
+			else
+			{
+				m_angle_seq = (m_ROTATION_ANGLES-1);
+			}
+		}
+		else if (keyboard.check(eKey_Right))
+		{
+			if(m_angle_seq < (m_ROTATION_ANGLES -1))
+			{
+				++m_angle_seq;
+				
+			}	
+			else
+			{
+				m_angle_seq = 0;
+			}
+		}
+
+		// If shift+direction is pressed, we're only rotating. so don't attempt to handle x,y axis movement
+		return;
+	}
+
+	// Handle moving across scene (x,y axis movement)
 	if(keyboard.check(GLUT_KEY_LEFT))	
 	{
 		if( (m_pos.x % scene.get_tile_size()) == 0)
 		{
-		liXaux = m_pos.x;
-		m_pos.x -= kiSTEP_LENGTH;
-		if(m_pos.x<=0)
+			liXaux = m_pos.x;
+			m_pos.x -= m_STEP_LENGTH;
+			if(m_pos.x<=0)
 			{
 				m_pos.x = liXaux;
-				lsScene->msPlayer.miState = eSTATE_LOOKLEFT;
+			}	
+			else
+			{
+				m_pos.x -= m_STEP_LENGTH;
 			}
-		}	
+		}
 		else
 		{
-		m_pos.x -=kiSTEP_LENGTH;
-		if( lsScene->msPlayer.miState != eSTATE_WALKLEFT )
-			{
-				lsScene->msPlayer.miState = eSTATE_WALKLEFT;
-				lsScene->msPlayer.miSeq = 0;
-				lsScene->msPlayer.miDelay = 0;
-			}
+			m_pos.x -= m_STEP_LENGTH;
 		}
 	}
-	else if(lsKeyBoard->mabKeys[GLUT_KEY_RIGHT])	
+
+	if(keyboard.check(GLUT_KEY_RIGHT))	
 	{
-		if( (m_pos.x % lsScene->miTILE_SIZE) == 0)
+		if( (m_pos.x % scene.get_tile_size()) == 0)
 		{
-		liXaux = lsScene->msPlayer.miX;
-		lsScene->msPlayer.miX+= kiSTEP_LENGTH;
-		if((lsScene->msPlayer.miX+lsScene->msPlayer.miW)>=(lsScene->miSCENE_WIDTH))
+			liXaux = m_pos.x;
+			liXaux = m_pos.x += m_STEP_LENGTH;
+			if((liXaux = m_pos.x+m_size.x)>=(scene.get_dimensions().x))
 			{
-				lsScene->msPlayer.miX = liXaux;
-				lsScene->msPlayer.miState = eSTATE_LOOKRIGHT;
+				m_pos.x = liXaux;
 			}
 		}	
 		else
 		{
-		lsScene->msPlayer.miX +=kiSTEP_LENGTH;
-		if( lsScene->msPlayer.miState != eSTATE_WALKRIGHT )
-			{
-				lsScene->msPlayer.miState = eSTATE_WALKRIGHT;
-				lsScene->msPlayer.miSeq = 0;
-				lsScene->msPlayer.miDelay = 0;
-			}
+			m_pos.x +=m_STEP_LENGTH;
 		}
+	}
 }
 
 void Player::render(GraphicManager &graphic_manager)
@@ -70,10 +100,12 @@ void Player::render(GraphicManager &graphic_manager)
 	liScreen_Y = (m_pos.y)  + scene->get_initial_pos().y + (scene->get_block_size() - scene->get_tile_size());
 	
 	//renderizar el objeto
-
 	float xo, yo, xf, yf;
-	xo = 0.0f; yo = 1.0f;
+
+	xo = 0.0f;
+	yo = m_angle_seq != m_ROTATION_ANGLES ? (m_angle_seq*m_SPRITE_INTERVAL_Y) + m_SPRITE_INTERVAL_Y : 1.0f;
+
 	xf = xo + 0.167f; 
 	yf = yo - 0.083f;
-	graphic_manager.DrawObject(m_texture.getID(), m_size.x, m_size.y, 0.0f, 0.1f, 0.1f, 0.0f,liScreen_X,liScreen_Y);
+	graphic_manager.DrawObject(m_texture.getID(), m_size.x, m_size.y, xo, yo, xf, yf,liScreen_X,liScreen_Y);
 }

@@ -30,6 +30,8 @@ enum ObjectState
 class GraphicObject
 {
 public:
+
+
 	/*
 	 *  @brief Constructor
 	 */
@@ -52,12 +54,10 @@ public:
 
 	// Setters
 	virtual void set_position(const Point<>& pos) { m_pos = pos; update_xml_pos(); }
-	virtual void set_state(const ObjectState state) { m_state = state; }
 
 	// Getters
 	virtual int get_imageID() { return m_texture.getID(); }
-	virtual ObjectState get_state() { return m_state; }
-	virtual const Point<>& get_size() { return m_size; }
+	virtual const Point<>& get_size() const { return m_size; }
 	virtual const Point<>& get_position() const { return m_pos; }
 	virtual const std::string& get_name() const { return m_name; }
 	virtual int get_cellID() const { return m_cellID; }
@@ -67,12 +67,9 @@ protected:
 
 	ticpp::Element*	m_xml_element;
 	int				m_cellID;
-	ObjectState		m_state;
 	std::string		m_name;
-	Point<>	m_pos;
+	Point<>			m_pos;
 	Point<>			m_size;
-	int				m_seq;
-	int				m_delay;
 	Texture			m_texture;
 
 };

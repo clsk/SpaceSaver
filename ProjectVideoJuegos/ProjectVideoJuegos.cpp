@@ -26,18 +26,22 @@ void AppRender()
 void AppKeyboard(unsigned char lcKey, int x, int y)
 {
 	Game::get_instance().m_keyboard.process_key(lcKey, true);
+	Game::get_instance().m_keyboard.set_modifiers(glutGetModifiers());
 }
 void AppKeyboardUp( unsigned char lcKey, int x, int y)
 {
 	Game::get_instance().m_keyboard.process_key(lcKey, false);
+	Game::get_instance().m_keyboard.set_modifiers(glutGetModifiers());
 }
 void AppSpecialKeys(int liKey, int x, int y)
 {
 	Game::get_instance().m_keyboard.process_key(liKey, true);
+	Game::get_instance().m_keyboard.set_modifiers(glutGetModifiers());
 }
 void AppSpecialKeysUp(int liKey, int x, int y)
 {
 	Game::get_instance().m_keyboard.process_key(liKey, false);
+	Game::get_instance().m_keyboard.set_modifiers(glutGetModifiers());
 }
 
 /**

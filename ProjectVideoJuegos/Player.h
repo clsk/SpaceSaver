@@ -19,10 +19,7 @@ public:
 	/*
 	 *  @brief Constructor
 	 */
-	Player(ticpp::Element* xml_element) : GraphicObject(xml_element) 
-	{
-		m_xml_element->GetAttribute("FrameDelay", &m_frame_delay);
-	}
+	Player(ticpp::Element* xml_element);
 
 	/*
 	 *  @brief
@@ -34,7 +31,13 @@ public:
 	void render(GraphicManager &graphic_manager);
 
 protected:
-	int m_frame_delay;
+	static const int	m_STEP_LENGTH = 2;
+	static const int	m_ROTATION_ANGLES = 12;
+	const float			m_SPRITE_INTERVAL_X;
+	const float			m_SPRITE_INTERVAL_Y;
+	int					m_frame_delay;
+	int					m_angle_seq;
+	int					m_delay;
 };
 
 
