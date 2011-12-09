@@ -92,6 +92,7 @@
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="ActionBuilder.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Condition.cpp" />
     <ClCompile Include="ConditionBuilder.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -117,6 +118,7 @@
   <ItemGroup>
     <ClInclude Include="Action.h" />
     <ClInclude Include="ActionBuilder.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Condition.h" />
     <ClInclude Include="ConditionBuilder.h" />
     <ClInclude Include="Enemy.h" />

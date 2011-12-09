@@ -1,7 +1,7 @@
 #include "Player.h"
 
 #include "stdafx.h"
-#include <Windows.h>
+#include <ctime>
 
 #include "keyboard.h"
 #include "GraphicManager.h"
@@ -9,7 +9,7 @@
 
 using namespace std;
 
-Player::Player(ticpp::Element* xml_element) : GraphicObject(xml_element), m_angle_seq(0), m_SPRITE_INTERVAL_X(0.0f), m_SPRITE_INTERVAL_Y(0.083f)
+Player::Player(ticpp::Element* xml_element) : GraphicObject(xml_element), m_angle_seq(0), m_SPRITE_INTERVAL_X(0.0f), m_SPRITE_INTERVAL_Y(0.083f), m_last_shot(time(NULL))
 {
 	m_xml_element->GetAttribute("FrameDelay", &m_frame_delay);
 }
@@ -18,7 +18,12 @@ void Player::update(float lfTimeStep)
 {
 	Keyboard& keyboard = Game::get_instance().m_keyboard;
 	Scene& scene = (*Game::get_instance().get_scene());
-	int liYaux, liXaux;
+
+	// Update bullets
+	for (std::list<Bullet>::iterator Iter = m_bullets.begin(); Iter != m_bullets.end(); ++Iter)
+	{
+		Iter->update(lfTimeStep);
+	}
 
 	// Handle rotations
 	if ((keyboard.get_modifiers() & GLUT_ACTIVE_SHIFT) == GLUT_ACTIVE_SHIFT)
@@ -54,39 +59,36 @@ void Player::update(float lfTimeStep)
 	// Handle moving across scene (x,y axis movement)
 	if(keyboard.check(GLUT_KEY_LEFT))	
 	{
-		if( (m_pos.x % scene.get_tile_size()) == 0)
-		{
-			liXaux = m_pos.x;
+		if (m_pos.x > 0)
 			m_pos.x -= m_STEP_LENGTH;
-			if(m_pos.x<=0)
-			{
-				m_pos.x = liXaux;
-			}	
-			else
-			{
-				m_pos.x -= m_STEP_LENGTH;
-			}
-		}
-		else
-		{
-			m_pos.x -= m_STEP_LENGTH;
-		}
-	}
+	} 
 
 	if(keyboard.check(GLUT_KEY_RIGHT))	
 	{
-		if( (m_pos.x % scene.get_tile_size()) == 0)
-		{
-			liXaux = m_pos.x;
-			liXaux = m_pos.x += m_STEP_LENGTH;
-			if((liXaux = m_pos.x+m_size.x)>=(scene.get_dimensions().x))
-			{
-				m_pos.x = liXaux;
-			}
-		}	
-		else
-		{
+		if (m_pos.x < scene.get_dimensions().x)
 			m_pos.x +=m_STEP_LENGTH;
+	}
+
+	if(keyboard.check(GLUT_KEY_UP))
+	{
+		if (m_pos.y < scene.get_dimensions().y)
+			m_pos.y +=m_STEP_LENGTH;
+	}
+
+	if(keyboard.check(GLUT_KEY_DOWN))
+	{
+		if (m_pos.y > 0)
+			m_pos.y -= m_STEP_LENGTH;
+	}
+
+	if (keyboard.check(VK_SPACE))
+	{
+		// Limit shots to one per second
+		time_t current_time = time(NULL);
+		if (current_time - m_last_shot > 10)
+		{
+			m_last_shot = current_time;
+			m_bullets.push_back(Bullet(Point<>(m_pos.x+(m_size.x/2)-Bullet::size, m_pos.y+m_size.y+1)));
 		}
 	}
 }
@@ -108,4 +110,10 @@ void Player::render(GraphicManager &graphic_manager)
 	xf = xo + 0.167f; 
 	yf = yo - 0.083f;
 	graphic_manager.DrawObject(m_texture.getID(), m_size.x, m_size.y, xo, yo, xf, yf,liScreen_X,liScreen_Y);
+
+	// Render Bullets
+	for (std::list<Bullet>::iterator Iter = m_bullets.begin(); Iter != m_bullets.end(); ++Iter)
+	{
+		Iter->render(graphic_manager);
+	}
 }

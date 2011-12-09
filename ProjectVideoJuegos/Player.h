@@ -6,9 +6,9 @@
 #include "GraphicObject.h"
 #include "keyboard.h"
 #include "ticpp.h"
+#include "Bullet.h"
 
 #include <list>
-
 
 /*
  *  @brief Esta clase representa al jugador
@@ -38,6 +38,8 @@ protected:
 	int					m_frame_delay;
 	int					m_angle_seq;
 	int					m_delay;
+	std::list<Bullet>	m_bullets;
+	time_t				m_last_shot;
 };
 
 

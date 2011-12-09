@@ -23,6 +23,11 @@ GraphicObject::GraphicObject(ticpp::Element* xml_element) : m_xml_element(xml_el
 	m_texture.load(image_path.c_str(), GL_RGBA);
 }
 
+GraphicObject::GraphicObject(const Point<>& pos, const Point<>& size, const string& image_path) : m_xml_element(NULL), m_pos(pos), m_size(size)
+{
+	m_texture.load(image_path.c_str(), GL_RGBA);
+}
+
 void GraphicObject::render(GraphicManager &graphic_manager)
 {
 	Scene* scene = Game::get_instance().get_scene();
@@ -32,5 +37,5 @@ void GraphicObject::render(GraphicManager &graphic_manager)
 	liScreen_Y = (m_pos.y)  + scene->get_initial_pos().y + (scene->get_block_size() - scene->get_tile_size());
 	
 	//renderizar el objeto (paint whole image)
-	graphic_manager.DrawObject(m_texture.getID(), m_size.x, m_size.y, 0.0f, 0.1f, 0.1f, 0.0f,liScreen_X,liScreen_Y);
+	graphic_manager.DrawObject(m_texture.getID(), m_size.x, m_size.y, 0.0f, 1.0f, 1.0f, 0.0f,liScreen_X,liScreen_Y);
 }

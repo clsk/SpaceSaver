@@ -37,6 +37,8 @@ public:
 	 */
 	GraphicObject(ticpp::Element* xml_element);
 
+	GraphicObject(const Point<>& pos, const Point<>& size, const std::string& image_path);
+
 	virtual ~GraphicObject() {};
 
 	/*
@@ -63,7 +65,14 @@ public:
 	virtual int get_cellID() const { return m_cellID; }
 
 protected:
-	void update_xml_pos() { m_xml_element->SetAttribute("posX", m_pos.x); m_xml_element->SetAttribute("posY", m_pos.y); }
+	virtual void update_xml_pos() 
+	{ 
+		if (m_xml_element) 
+		{ 
+			m_xml_element->SetAttribute("posX", m_pos.x); 
+			m_xml_element->SetAttribute("posY", m_pos.y); 
+		} 
+	}
 
 	ticpp::Element*	m_xml_element;
 	int				m_cellID;
