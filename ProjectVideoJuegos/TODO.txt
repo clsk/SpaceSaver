@@ -1,0 +1,8 @@
+- Move according to current angle
+- Enemies
+- Lives
+- Weapons
+- Bubble (protection)
+- 2 more levels
+- Menu
+- Load/Save
