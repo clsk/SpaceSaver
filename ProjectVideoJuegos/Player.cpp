@@ -77,7 +77,12 @@ void Player::update(float lfTimeStep)
 	if(keyboard.check(GLUT_KEY_UP))
 	{
 		if (m_pos.y < scene.get_dimensions().y)
-			m_pos.y +=m_STEP_LENGTH;
+		{
+			if (m_angle_seq < 7)
+				m_pos.y += m_STEP_LENGTH - m_angle_seq;
+			else
+				m_pos.y += m_angle_seq - 9;
+		}
 	}
 
 	if(keyboard.check(GLUT_KEY_DOWN))
@@ -90,7 +95,7 @@ void Player::update(float lfTimeStep)
 	{
 		// Limit shots to one per second
 		time_t current_time = time(NULL);
-		if (current_time - m_last_shot > 10)
+		if (current_time - m_last_shot > 3)
 		{
 			m_last_shot = current_time;
 			m_bullets.push_back(Bullet(Point<>(m_pos.x+(m_size.x/2)-Bullet::size, m_pos.y+m_size.y+1)));

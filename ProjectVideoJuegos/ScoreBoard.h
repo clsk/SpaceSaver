@@ -15,6 +15,7 @@ private:
 	int		m_lives;
 	int		m_points;
 	int		m_level;
+	Texture m_life;
 
 };
 

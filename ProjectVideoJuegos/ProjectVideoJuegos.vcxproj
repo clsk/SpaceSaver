@@ -141,6 +141,7 @@
     </None>
     <None Include="Libraries\Corona\corona.dll" />
     <None Include="ReadMe.txt" />
+    <None Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Libraries\Corona\corona.lib" />

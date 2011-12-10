@@ -165,6 +165,9 @@
     <None Include="Level1.xml">
       <Filter>Data</Filter>
     </None>
+    <None Include="TODO.txt">
+      <Filter>Data</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="Libraries\Corona\corona.lib">

@@ -36,7 +36,7 @@ public:
 protected:
 	static bool load_image(const std::string& image_path);
 
-	static const int	m_STEP_LENGTH = 2;
+	static const int	m_STEP_LENGTH = 3;
 	static const int	m_ROTATION_ANGLES = 12;
 	const float			m_SPRITE_INTERVAL_X;
 	const float			m_SPRITE_INTERVAL_Y;

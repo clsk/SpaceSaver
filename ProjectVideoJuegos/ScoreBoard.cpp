@@ -9,6 +9,7 @@ using std::string;
 
 ScoreBoard::ScoreBoard(const Point<>& pos) :m_lives(0), m_points(0), m_level(0)
 {
+	// m_life.load(".\\IMAGES\\plus_life_128.png");
 }
 
 void ScoreBoard::update(int lives, int points, int level)
@@ -38,6 +39,7 @@ void ScoreBoard::render(GraphicManager& graphic_manager)
 	string message = "Level ";
 	message += characters;
 	graphic_manager.DrawMessage(message, (scene.get_dimensions().x >> 1)-(message.length() << 4), scene.get_dimensions().y - 15);
+	// graphic_manager.DrawObject(m_life.getID(), 16, 16, 0.0f, 0.25f, 0.25f, 0.0f, 32 , scene.get_dimensions().y - 64);
 
 	// Draw Points
 	sprintf(characters, "%u", m_points);
