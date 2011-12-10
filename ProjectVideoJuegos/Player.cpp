@@ -1,6 +1,5 @@
 #include "Player.h"
 
-#include "stdafx.h"
 #include <ctime>
 
 #include "keyboard.h"
@@ -12,6 +11,12 @@ using namespace std;
 Player::Player(ticpp::Element* xml_element) : GraphicObject(xml_element), m_angle_seq(0), m_SPRITE_INTERVAL_X(0.0f), m_SPRITE_INTERVAL_Y(0.083f), m_last_shot(time(NULL))
 {
 	m_xml_element->GetAttribute("FrameDelay", &m_frame_delay);
+	string image_path;
+	m_xml_element->GetAttribute("ImagePath", &image_path);
+	load_image(image_path);
+	// Reuse image_path for bullet image
+	m_xml_element->GetAttribute("BulletImage", &image_path);
+	Bullet::load_image(image_path);
 }
 
 void Player::update(float lfTimeStep)
@@ -117,3 +122,10 @@ void Player::render(GraphicManager &graphic_manager)
 		Iter->render(graphic_manager);
 	}
 }
+
+bool Player::load_image(const string& image_path)
+{
+	return m_texture.load(image_path.c_str(), GL_RGBA);
+}
+
+Texture Player::m_texture = Texture();

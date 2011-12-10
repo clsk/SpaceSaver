@@ -5,7 +5,8 @@
 *	ESTE ARCHIVO PERMITE MANIPULAR LOS GRAFICOS (SALIDA|VISUALIZACION),
 *	CREANDO UN NIVEL DE INDEPENDENCIA DE LA APLICACION
 **/
-
+#include <string>
+#include <gl/glut.h>
 #include "Texture.h"
 
 //***************CONSTANTES***************
@@ -42,8 +43,23 @@ public:
 	
 	//*****************************************************************************
 	//Visualizar el objeto en la pantalla
+
 	void DrawObject(int liIdTex, int liObjW, int liObjH ,float xo,float yo,float xf,float yf, int liScreen_X, int liScreen_Y);
-	void DrawMessage(char *, int, int);
+	/*
+	 *  Opciones de fonts
+	 *	GLUT_BITMAP_8_BY_13
+	 *	GLUT_BITMAP_9_BY_15
+	 *	GLUT_BITMAP_TIMES_ROMAN_10
+	 *	GLUT_BITMAP_TIMES_ROMAN_24
+	 *	GLUT_BITMAP_HELVETICA_10
+	 *	GLUT_BITMAP_HELVETICA_12
+	 *	GLUT_BITMAP_HELVETICA_18
+	 */
+	void DrawMessage(const char *, int, int, void* font = GLUT_BITMAP_HELVETICA_12);
+	void DrawMessage(std::string& str, int x, int y, void* font = GLUT_BITMAP_HELVETICA_12)
+	{
+		DrawMessage(str.c_str(), x, y, font);
+	}
 	void DrawMap(int liIdImg, int);
 
 

@@ -7,7 +7,6 @@
 #include <cstdlib>
 #include <sstream>
 
-#include "stdafx.h"
 #include "Game.h"
 #include "Player.h"
 

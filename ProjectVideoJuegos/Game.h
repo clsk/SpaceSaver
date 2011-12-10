@@ -4,7 +4,6 @@
 #include <ctime>
 #include <list>
 
-#include "stdafx.h"
 #include "keyboard.h"
 #include "GraphicManager.h"
 #include "Scene.h"

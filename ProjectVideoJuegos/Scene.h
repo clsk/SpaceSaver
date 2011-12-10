@@ -1,7 +1,6 @@
 #ifndef _SCENE_H
 #define _SCENE_H
 
-#include "stdafx.h"
 #include <list>
 #include <map>
 #include <string>
@@ -10,6 +9,8 @@
 #include "GraphicObject.h"
 #include "ticpp.h"
 #include "Rule.h"
+#include "Texture.h"
+#include "ScoreBoard.h"
 
 class Scene
 {
@@ -36,6 +37,10 @@ public:
 	bool remove_graphic_object(const std::string& name);
 	bool remove_graphic_object(int cellId);
 
+	// Lives
+	int get_lives() const { return m_lives; }
+	int add_lives(int interval) { m_lives += interval; return m_lives; }
+
 private:
 	// void load_map(ticpp::Iterator<ticpp::Element>& map_element);
 	void load_graphic_objects(ticpp::Iterator<ticpp::Element>& map_element);
@@ -53,7 +58,10 @@ private:
 	int								m_block_size;
 	Point<>							m_dimensions;
 	Point<>							m_initial_pos;
-
+	Texture							m_back_texture;
+	ScoreBoard						m_score_board;
+	int								m_lives;
+	int								m_points;
 };
 
 #endif // _SCENE_H

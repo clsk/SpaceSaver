@@ -1,7 +1,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "stdafx.h"
 #include "GraphicManager.h"
 #include "GraphicObject.h"
 #include "keyboard.h"
@@ -9,6 +8,7 @@
 #include "Bullet.h"
 
 #include <list>
+#include <string>
 
 /*
  *  @brief Esta clase representa al jugador
@@ -27,10 +27,15 @@ public:
 	 *  @param lfTimeStep tiempo transcurrido
 	 */
 	void update(float lfTimeStep);
-
 	void render(GraphicManager &graphic_manager);
+	static const Texture& get_texture()
+	{
+		return m_texture;
+	}
 
 protected:
+	static bool load_image(const std::string& image_path);
+
 	static const int	m_STEP_LENGTH = 2;
 	static const int	m_ROTATION_ANGLES = 12;
 	const float			m_SPRITE_INTERVAL_X;
@@ -40,6 +45,7 @@ protected:
 	int					m_delay;
 	std::list<Bullet>	m_bullets;
 	time_t				m_last_shot;
+	static Texture		m_texture;
 };
 
 

@@ -1,6 +1,5 @@
 #include "ConditionBuilder.h"
 
-#include "stdafx.h"
 #include <string>
 #include <iostream>
 #include <cstdlib>

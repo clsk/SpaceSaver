@@ -1,7 +1,7 @@
 #ifndef _TEXTURE_H
 #define _TEXTURE_H
 
-#include "stdafx.h"
+#include <gl/glut.h>
 #include "Libraries\Corona\corona.h"
 //***********CONSTANTES Y ENUMERATIVOS***************
 typedef enum eColorComponents
@@ -31,7 +31,11 @@ public:
 	/**
 	*	Devuelve el ID de la Textura
 	**/
-	int  getID();
+	int  getID() const
+	{
+		return mglID;
+	}
+
 	/**
 	*	Devuelve las dimensiones de la Textura
 	**/

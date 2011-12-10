@@ -1,6 +1,5 @@
 #include "RuleBuilder.h"
 
-#include "stdafx.h"
 #include <iostream>
 
 #include "ConditionBuilder.h"

@@ -5,7 +5,6 @@
 
 #include <string>
 
-#include "stdafx.h"
 #include "ticpp.h"
 #include "Texture.h"
 
@@ -35,9 +34,9 @@ public:
 	/*
 	 *  @brief Constructor
 	 */
-	GraphicObject(ticpp::Element* xml_element);
+	GraphicObject(ticpp::Element* xml_element, Texture* texture_ptr = NULL);
 
-	GraphicObject(const Point<>& pos, const Point<>& size, const std::string& image_path);
+	GraphicObject(const Point<>& pos, const Point<>& size, Texture* texture_ptr = NULL);
 
 	virtual ~GraphicObject() {};
 
@@ -58,7 +57,7 @@ public:
 	virtual void set_position(const Point<>& pos) { m_pos = pos; update_xml_pos(); }
 
 	// Getters
-	virtual int get_imageID() { return m_texture.getID(); }
+	virtual int get_imageID() { return m_texture_ptr->getID(); }
 	virtual const Point<>& get_size() const { return m_size; }
 	virtual const Point<>& get_position() const { return m_pos; }
 	virtual const std::string& get_name() const { return m_name; }
@@ -79,7 +78,7 @@ protected:
 	std::string		m_name;
 	Point<>			m_pos;
 	Point<>			m_size;
-	Texture			m_texture;
+	Texture*		m_texture_ptr;
 
 };
 

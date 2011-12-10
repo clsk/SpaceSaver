@@ -101,10 +101,7 @@
     <ClCompile Include="Rule.cpp" />
     <ClCompile Include="RuleBuilder.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="ScoreBoard.cpp" />
     <ClCompile Include="keyboard.cpp" />
     <ClCompile Include="GraphicManager.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -128,7 +125,7 @@
     <ClInclude Include="Rule.h" />
     <ClInclude Include="RuleBuilder.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="ScoreBoard.h" />
     <ClInclude Include="keyboard.h" />
     <ClInclude Include="GraphicManager.h" />
     <ClInclude Include="Texture.h" />

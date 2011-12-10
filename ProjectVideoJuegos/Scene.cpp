@@ -1,6 +1,5 @@
 #include "Scene.h"
 
-#include "stdafx.h"
 #include <list>
 #include <string>
 #include <iostream>
@@ -14,7 +13,7 @@
 
 using namespace std;
 
-Scene::Scene(const std::string& xml_file) : m_xml_file(xml_file), m_xml_doc(xml_file), m_loaded(false), m_last_saved(0)
+Scene::Scene(const std::string& xml_file) : m_xml_file(xml_file), m_xml_doc(xml_file), m_loaded(false), m_last_saved(0), m_points(0), m_score_board(Point<>(0,0))
 {
 	load_xml();
 }
@@ -28,6 +27,9 @@ void Scene::update(float lfTimeStep)
 	// Execute Rules
 	for(list<Rule*>::iterator Iter = m_rules.begin(); Iter != m_rules.end(); ++Iter)
 		(*Iter)->execute();
+
+	// Update Score Board
+	m_score_board.update(m_lives, m_points, m_level);
 
 	/*
 	if (Game::get_instance().m_keyboard.Pressed(eKey_F2) && (timeGetTime() - m_last_saved) > 5000)
@@ -47,9 +49,16 @@ void Scene::update(float lfTimeStep)
 
 void Scene::render(GraphicManager &graphics)
 {
+	// Draw Background
+	graphics.DrawObject(m_back_texture.getID(), m_dimensions.x, m_dimensions.y, 0.0f, 1.0f, 1.0f, 0.0f, 0, 0);
+
 	// m_map.render(graphics);
+
 	for (list<GraphicObject*>::iterator Iter = m_graphic_objects.begin(); Iter != m_graphic_objects.end(); ++Iter)
 		(*Iter)->render(graphics);
+
+	// Draw Score Board
+	m_score_board.render(graphics);
 }
 
 Scene::~Scene()
@@ -110,9 +119,13 @@ void Scene::load_graphic_objects(ticpp::Iterator<ticpp::Element>& map_element)
 
 			GraphicObject* graphic_object = NULL;
 			if (type == "Player")
+			{
 				graphic_object = dynamic_cast<GraphicObject*>(new Player(child.Get()));
+			}
 			else
+			{
 				graphic_object = new GraphicObject(child.Get());
+			}
 
 			m_graphic_objects.push_back(graphic_object);
 			m_cells.insert(map<int, GraphicObject*>::value_type(graphic_object->get_cellID(), graphic_object));
@@ -136,7 +149,9 @@ void Scene::load_xml()
 		m_xml_doc.FirstChildElement()->GetAttribute("height", &(m_dimensions.y));
 		m_xml_doc.FirstChildElement()->GetAttribute("BlockSize", &(m_block_size));
 		m_xml_doc.FirstChildElement()->GetAttribute("TileSize", &(m_tile_size));
+		m_xml_doc.FirstChildElement()->GetAttribute("Lives", &m_lives);
 
+		m_back_texture.load(m_xml_doc.FirstChildElement()->GetAttribute("background").c_str());
         ticpp::Iterator<ticpp::Element> child;
         for(child = child.begin(m_xml_doc.FirstChildElement()); child != child.end(); child++)
         {

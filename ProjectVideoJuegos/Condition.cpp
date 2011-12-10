@@ -1,6 +1,5 @@
 #include "Condition.h"
 
-#include "stdafx.h"
 #include <map>
 #include <string>
 #include <cassert>

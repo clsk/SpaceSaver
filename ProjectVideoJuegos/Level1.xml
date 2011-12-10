@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
-<Level width = "640" height = "480" number = "1" BlockSize="24" TileSize="16">
+<Level width = "640" height = "480" number = "1" background=".\\IMAGES\\background.png" BlockSize="24" TileSize="16" Lives="3">
 	<SpecialCells>
-		<Cell cellId = "1"  type = "Player" name = "Player" posX="75" posY="17" ImagePath=".\\IMAGES\\ship_64.png" width="64" height="64" FrameDelay="8"/>
+		<Cell cellId = "1"  type = "Player" name = "Player" posX="75" posY="17" ImagePath=".\\IMAGES\\ship_32.png" width="32" height="32" FrameDelay="8" BulletImage=".\\IMAGES\\drop.png"/>
 	</SpecialCells>
 	</Level>

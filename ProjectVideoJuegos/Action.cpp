@@ -1,10 +1,9 @@
 #include "Action.h"
 
-#include "stdafx.h"
 #include <map>
 #include <string>
 #include <cstdlib>
-#include <Windows.h>
+#include <windows.h>
 
 #include "Game.h"
 #include "GraphicManager.h"

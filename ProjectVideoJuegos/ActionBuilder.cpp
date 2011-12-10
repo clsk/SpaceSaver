@@ -1,6 +1,5 @@
 #include "ActionBuilder.h"
 
-#include "stdafx.h"
 #include <string>
 #include <map>
 #include <cassert>

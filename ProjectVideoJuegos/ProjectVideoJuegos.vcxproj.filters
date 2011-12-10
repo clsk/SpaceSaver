@@ -30,9 +30,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Utility</Filter>
-    </ClCompile>
     <ClCompile Include="keyboard.cpp">
       <Filter>Input</Filter>
     </ClCompile>
@@ -91,11 +88,11 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="ScoreBoard.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
     <ClInclude Include="keyboard.h">
       <Filter>Input</Filter>
     </ClInclude>
@@ -154,6 +151,9 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreBoard.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>

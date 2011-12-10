@@ -1,7 +1,5 @@
 #include "Rule.h"
 
-#include "stdafx.h"
-
 Rule::Rule()
 {
 }

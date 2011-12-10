@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include <cstring>
 #include "keyboard.h"
 
 //**************FUNCIONES*****************

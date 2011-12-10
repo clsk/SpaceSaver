@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include <gl/glut.h>
 #include "GraphicManager.h"
 
 
@@ -80,7 +80,7 @@ void GraphicManager::DrawMap(int liIdImg, int liNivel)
 }
 
 //Visualizar los mensajes en la pantalla
-void GraphicManager::DrawMessage(char * lacText,int liX, int liY )
+void GraphicManager::DrawMessage(const char * lacText,int liX, int liY, void* font )
 {           
 	int liIndex;
 	for(liIndex=0; liIndex < strlen(lacText); liIndex++) 
@@ -88,7 +88,7 @@ void GraphicManager::DrawMessage(char * lacText,int liX, int liY )
 		//determina la posición donde será mostrado el carácter
 		glRasterPos2f(liX + liIndex*ESPAI,liY );
 		//dibuja un caracter con un formato y tamaño dado
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,(int)(lacText[liIndex]));
+		glutBitmapCharacter(font,(int)(lacText[liIndex]));
 	}
 }
 

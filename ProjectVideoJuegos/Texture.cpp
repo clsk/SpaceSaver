@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include <gl/glut.h>
 #include "Texture.h"
 
 //**************FUNCIONES*****************
@@ -61,13 +61,7 @@ bool Texture::load(const char * lacFilename,
 
 	return true;
 }
-/**
-*	Devuelve el ID de la Textura
-**/
-int  Texture::getID()
-{
-	return mglID;
-}
+
 /**
 *	Devuelve las dimensiones de la Textura
 **/

@@ -1,7 +1,7 @@
 // ProjectVideoJuegos.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+#include <windows.h>
 #include "Game.h"
 
 
@@ -116,7 +116,7 @@ void _GLUT_Register()
 }
 //**************************************************************************
 
-int main(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {
     //Inicializa la Librería GLUT
 	glutInit(&argc, argv);
