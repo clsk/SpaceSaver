@@ -1,4 +1,3 @@
-- Move according to current angle
 - Enemies
 - Lives
 - Weapons

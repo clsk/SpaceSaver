@@ -25,9 +25,16 @@ void Player::update(float lfTimeStep)
 	Scene& scene = (*Game::get_instance().get_scene());
 
 	// Update bullets
-	for (std::list<Bullet>::iterator Iter = m_bullets.begin(); Iter != m_bullets.end(); ++Iter)
+	for (std::list<Bullet*>::iterator Iter = m_bullets.begin(); Iter != m_bullets.end(); )
 	{
-		Iter->update(lfTimeStep);
+		// Bullet has gone out of scene bounds, delete it
+		if ((*Iter)->update_bullet(lfTimeStep) == false)
+		{
+			delete *Iter;
+			Iter = m_bullets.erase(Iter);
+		}
+		else
+			++Iter;
 	}
 
 	// Handle rotations
@@ -49,11 +56,22 @@ void Player::update(float lfTimeStep)
 			if(m_angle_seq < (m_ROTATION_ANGLES -1))
 			{
 				++m_angle_seq;
-				
 			}	
 			else
 			{
 				m_angle_seq = 0;
+			}
+		}
+		else if (keyboard.check(VK_SPACE))
+		{
+			// Hell fire
+			// Limit shots to one per second
+			time_t current_time = time(NULL);
+			if (current_time - m_last_shot > 0)
+			{
+				m_last_shot = current_time;
+				for (unsigned int i = 0; i < m_ROTATION_ANGLES; ++i)
+					m_bullets.push_back(new Bullet(dynamic_cast<ShooterInterface*>(this), Point<>(m_pos.x+(m_size.x/2)-Bullet::size, m_pos.y+m_size.y+1), i));
 			}
 		}
 
@@ -65,40 +83,47 @@ void Player::update(float lfTimeStep)
 	if(keyboard.check(GLUT_KEY_LEFT))	
 	{
 		if (m_pos.x > 0)
-			m_pos.x -= m_STEP_LENGTH;
+		{
+			m_pos.x -= calc_horizontal_mov_x()<<1;
+			m_pos.y += calc_horizontal_mov_y()<<1;
+		}
 	} 
 
 	if(keyboard.check(GLUT_KEY_RIGHT))	
 	{
 		if (m_pos.x < scene.get_dimensions().x)
-			m_pos.x +=m_STEP_LENGTH;
+		{
+			m_pos.x += calc_horizontal_mov_x()<<1;
+			m_pos.y -= calc_horizontal_mov_y()<<1;
+		}
 	}
 
 	if(keyboard.check(GLUT_KEY_UP))
 	{
 		if (m_pos.y < scene.get_dimensions().y)
 		{
-			if (m_angle_seq < 7)
-				m_pos.y += m_STEP_LENGTH - m_angle_seq;
-			else
-				m_pos.y += m_angle_seq - 9;
+			m_pos.x += calc_vertical_mov_x()<<1;
+			m_pos.y += calc_vertical_mov_y()<<1;
 		}
 	}
 
 	if(keyboard.check(GLUT_KEY_DOWN))
 	{
 		if (m_pos.y > 0)
-			m_pos.y -= m_STEP_LENGTH;
+		{
+			m_pos.x -= calc_vertical_mov_x() <<1;
+			m_pos.y -= calc_vertical_mov_y() <<1;
+		}
 	}
 
 	if (keyboard.check(VK_SPACE))
 	{
 		// Limit shots to one per second
 		time_t current_time = time(NULL);
-		if (current_time - m_last_shot > 3)
+		if (current_time - m_last_shot > 0)
 		{
 			m_last_shot = current_time;
-			m_bullets.push_back(Bullet(Point<>(m_pos.x+(m_size.x/2)-Bullet::size, m_pos.y+m_size.y+1)));
+			m_bullets.push_back(new Bullet(dynamic_cast<ShooterInterface*>(this), Point<>(m_pos.x+(m_size.x/2)-Bullet::size, m_pos.y+m_size.y+1), m_angle_seq));
 		}
 	}
 }
@@ -122,9 +147,9 @@ void Player::render(GraphicManager &graphic_manager)
 	graphic_manager.DrawObject(m_texture.getID(), m_size.x, m_size.y, xo, yo, xf, yf,liScreen_X,liScreen_Y);
 
 	// Render Bullets
-	for (std::list<Bullet>::iterator Iter = m_bullets.begin(); Iter != m_bullets.end(); ++Iter)
+	for (std::list<Bullet*>::iterator Iter = m_bullets.begin(); Iter != m_bullets.end(); ++Iter)
 	{
-		Iter->render(graphic_manager);
+		(*Iter)->render(graphic_manager);
 	}
 }
 

@@ -10,6 +10,7 @@
 
 using namespace std;
 
+/*
 bool Map::push_row(const char* line, size_t len)
 {
 	if (m_current_push_row >= ki_CONSOLE_DIMY || len > ki_CONSOLE_DIMX)
@@ -34,3 +35,4 @@ void Map::render(GraphicManager& graphic_manager)
 {
 	graphic_manager.WriteToBuffer(m_screen);
 }
+*/

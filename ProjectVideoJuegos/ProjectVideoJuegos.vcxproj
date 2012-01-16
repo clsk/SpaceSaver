@@ -97,6 +97,7 @@
     <ClCompile Include="ConditionBuilder.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GraphicObject.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Rule.cpp" />
     <ClCompile Include="RuleBuilder.cpp" />
@@ -121,6 +122,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GraphicObject.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Rule.h" />
     <ClInclude Include="RuleBuilder.h" />
@@ -128,6 +130,7 @@
     <ClInclude Include="ScoreBoard.h" />
     <ClInclude Include="keyboard.h" />
     <ClInclude Include="GraphicManager.h" />
+    <ClInclude Include="ShooterInterface.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Libraries\Corona\corona.h" />
     <ClInclude Include="ticpp.h" />

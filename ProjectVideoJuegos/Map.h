@@ -9,7 +9,7 @@
 class Map
 {
 public:
-	Map () : m_current_push_row(0) {}
+	Map (Point<> dimensions) : m_current_push_row(0) {}
 
 	/**
 	 *  @description 
@@ -26,7 +26,7 @@ public:
 	// Point<> get_end() const { return m_end_pos; }
 
 private:
-	char	m_screen[ki_CONSOLE_AREA];
+	char*	m_screen;
 	size_t	m_current_push_row;
 };
 

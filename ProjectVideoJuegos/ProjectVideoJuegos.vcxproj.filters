@@ -91,6 +91,9 @@
     <ClCompile Include="ScoreBoard.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="keyboard.h">
@@ -154,6 +157,12 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="ScoreBoard.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ShooterInterface.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
